@@ -4,10 +4,11 @@ import {
   Text,
   View,
   Modal,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   Button
 } from 'react-native';
 import { observer, inject } from 'mobx-react';
+import Icon from 'react-native-vector-icons/EvilIcons';
 
 @inject(['UX'])
 @observer
@@ -20,20 +21,45 @@ export default class DetailsModal extends React.Component {
         animationType="slide"
         transparent={false}
         visible={UX.detailModalIsVisible}
+        style={styles.modal}
       >
-        <TouchableWithoutFeedback onPress={() => UX.toggleDetailModal()}>
-          <View style={styles.modalView}>
+        <View style={styles.modal}>
+          <View style={styles.header}>
+            <TouchableOpacity onPress={() => UX.toggleDetailModal()}>
+              <Icon name="close" style={styles.closeWidget}/>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.view}>
             <Text>Lorem ipsum</Text>
             <Button title="Close" onPress={() => UX.toggleDetailModal()} />
           </View>
-        </TouchableWithoutFeedback>
+        </View>
       </Modal>
     );
   }
 }
 
+const blue = '#00f';
+
 const styles = StyleSheet.create({
-  modalView: {
-    padding: 40
+  modal: {
+    flex: 1,
+    flexDirection: 'column',
+    padding: 5,
+    paddingTop: 45
+  },
+  header: {
+    justifyContent: 'center',
+  },
+  closeWidget: {
+    color: blue,
+    fontSize: 32,
+    alignSelf: 'flex-end',
+    textAlign: 'center',
+  },
+  view: {
+    padding: 15,
+    flexDirection: 'column',
+    flex: 1,
   }
 });

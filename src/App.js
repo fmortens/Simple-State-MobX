@@ -1,30 +1,51 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import { DetailsModal, TestView } from './components';
-import { observer, Provider } from 'mobx-react';
+import { StyleSheet } from 'react-native';
+import { Provider } from 'mobx-react';
+import { TabBarBottom, TabNavigator } from 'react-navigation';
 import stores from './stores';
+import {
+  ItemList,
+  Camera
+} from './screens';
+import Icon from 'react-native-vector-icons/Foundation';
 
-@observer
 export default class App extends React.Component {
   render() {
     return (
       <Provider {...stores}>
-        <View style={styles.container}>
-          <DetailsModal />
-          <TestView />
-        </View>
+        <TabNav />
       </Provider>
     );
   }
 }
 
-const white = '#fff';
+const TabNav = TabNavigator({
+  List: {
+    screen: ItemList,
+    navigationOptions: () => ({
+      tabBarIcon: <Icon name="thumbnails" style={styles.itemListTabBarIcon} />,
+    }),
+  },
+  List2: {
+    screen: Camera,
+    navigationOptions: () => ({
+      tabBarIcon: <Icon name="camera" style={styles.itemListTabBarIcon} />,
+    }),
+  },
+},{
+  tabBarOptions: {
+    showLabel: false,
+    tabStyle: {
+      width: '100%',
+      backgroundColor: '#eaeaea'
+    },
+  }
+});
+
+const tabBarIconColor = 'black';
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: white,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 40
+  itemListTabBarIcon: {
+    color: tabBarIconColor,
+    fontSize: 80,
   }
 });
