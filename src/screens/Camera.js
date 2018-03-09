@@ -1,93 +1,74 @@
 import React from 'react';
 import {
-  View,
+  AppRegistry,
+  Dimensions,
   StyleSheet,
   Text,
   TouchableOpacity,
-  ScrollView,
-  CameraRoll,
-  Image
+  View
 } from 'react-native';
+import { RNCamera } from 'react-native-camera';
 
 export default class Camera extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      photos: []
+      capture: ''
     };
   }
 
-  _handleButtonPress = () => {
-    CameraRoll.getPhotos({
-        first: 20,
-        assetType: 'Photos',
-      })
-      .then(r => {
-        this.setState({ photos: r.edges });
-      })
-      .catch((err) => {
-         //Error Loading Images
-      });
-    };
-
-    render() {
-  return (
-    <View style={styles.cameraView}>
-      <ScrollView style={styles.scrollView}>
-        {this.state.photos.map((p, i) => {
-        return (
-          <Image
-            key={i}
-            style={{
-              width: 300,
-              height: 100,
+  render() {
+    return (
+      <View style={styles.container}>
+        <RNCamera
+            ref={ref => {
+              this.camera = ref;
             }}
-            source={{ uri: p.node.image.uri }}
-          />
-        );
-      })}
-      </ScrollView>
-      <View style={styles.cameraButtonView}>
-        <TouchableOpacity onPress={this._handleButtonPress}>
-          <Text style={styles.cameraButton}>Load Images</Text>
-        </TouchableOpacity>
+            style = {styles.preview}
+            type={RNCamera.Constants.Type.back}
+            flashMode={RNCamera.Constants.FlashMode.off}
+            barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
+            permissionDialogTitle={'Permission to use camera'}
+            permissionDialogMessage={'We need your permission to use your camera phone'}
+            onBarCodeRead={({data, type}) => {
+              this.setState({
+                capture: data
+              });
+            }}
+        />
+        <View><Text style={styles.capture}>[{this.state.capture}]</Text></View>
       </View>
-    </View>
-  );
- }
-
-  // render() {
-  //   return (
-  //     <View style={styles.container}>
-  //       <Text>Soon</Text>
-  //     </View>
-  //   );
-  // }
+    );
+  }
 };
 
 const backgroundColor = '#ffe';
 const red = 'red';
 const green = 'green';
 const blue = 'blue';
+const white = 'white';
+const black = 'black';
+
 const styles = StyleSheet.create({
-  cameraView: {
+  container: {
     flex: 1,
     flexDirection: 'column',
-    paddingTop: 40,
+    backgroundColor: black
   },
-  scrollView: {
+  preview: {
     flex: 1,
-    borderWidth: 2,
-    borderColor: blue
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   },
-  cameraButtonView: {
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  cameraButton: {
-    textAlign: 'center',
-    fontSize: 20
+  capture: {
+    flex: 0,
+    color: white,
+    fontSize: 32,
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20
   }
 });
