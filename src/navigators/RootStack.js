@@ -1,10 +1,20 @@
 import { StackNavigator } from 'react-navigation';
-import { ItemList } from '../screens';
+import {
+  ItemList,
+  Camera,
+  Detail
+} from '../screens';
 
 const RootStack = StackNavigator(
   {
     List: {
       screen: ItemList
+    },
+    Camera: {
+      screen: Camera
+    },
+    Detail: {
+      screen: Detail
     }
   },
   {

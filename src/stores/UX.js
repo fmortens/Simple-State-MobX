@@ -4,7 +4,7 @@ import { observable, action, computed, toJS } from 'mobx';
 
 class UXStore {
   @observable detailModalIsVisible = false;
-  @observable cameraIsActive = false;
+  @observable cameraStopped = false;
   @observable captureListEditable = false;
 
   @action
@@ -13,8 +13,13 @@ class UXStore {
   }
 
   @action
-  toggleCamera() {
-    this.cameraIsActive = !this.cameraIsActive;
+  disableCamera() {
+    this.cameraStopped = true;
+  }
+
+  @action
+  enableCamera() {
+    this.cameraStopped = false;
   }
 
   @action

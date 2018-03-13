@@ -3397,6 +3397,13 @@ react-devtools-core@3.0.0:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-camera@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-1.0.2.tgz#490e75b14196af0ec972a759bb6027693ad4aad6"
+  dependencies:
+    lodash "^4.17.4"
+    prop-types "^15.5.10"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
@@ -3424,6 +3431,10 @@ react-native-tab-view@^0.0.74:
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-0.0.74.tgz#62c0c882d9232b461ce181d440d683b4f99d1bd8"
   dependencies:
     prop-types "^15.6.0"
+
+react-native-uuid-generator@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-uuid-generator/-/react-native-uuid-generator-3.0.2.tgz#7bb4346698029a518060f3780c06ad0b4bf489b9"
 
 react-native-vector-icons@^4.5.0:
   version "4.5.0"

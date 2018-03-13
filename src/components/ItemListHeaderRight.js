@@ -2,19 +2,24 @@ import React from 'react';
 import {
   Button
 } from 'react-native';
-import { observer, inject } from 'mobx-react';
+import {inject } from 'mobx-react';
 
 const buttonColor = 'blue';
 
-@inject('QR', 'UX')
-@observer
+@inject('UX')
 export default class HeaderRight extends React.Component {
   render() {
-    const {UX} = this.props;
+    const {
+      navigation,
+      UX
+    } = this.props;
 
     return (
       <Button
-        onPress={() => alert('This is a button!')}
+        onPress={() => {
+          UX.enableCamera();
+          navigation.navigate({ routeName: 'Camera' });
+        }}
         title="+"
         color={buttonColor}
       />

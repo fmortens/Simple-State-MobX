@@ -18,11 +18,11 @@ import {
 @inject('QR', 'UX')
 @observer
 export default class ItemList extends React.Component {
-  static navigationOptions = {
-    headerTitle: <Text>woop</Text>,
+  static navigationOptions = ({ navigation, screenProps }) => ({
+    headerTitle: <Text>List</Text>,
     headerLeft: <ItemListHeaderLeft />,
-    headerRight: <ItemListHeaderRight />,
-  };
+    headerRight: <ItemListHeaderRight navigation={navigation} />,
+  });
 
   constructor(props) {
     super(props);
@@ -42,9 +42,14 @@ export default class ItemList extends React.Component {
       <Observer>{
         () =>
           <View style={styles.item}>
-            <View style={styles.itemDescription}>
+            <TouchableOpacity
+              style={styles.itemDescription}
+              onPress={() => this.props.navigation.navigate('Detail', {
+                data: item,
+                mode: 'view'
+              })}>
               <Text style={styles.itemDescriptionText}>{decodeURIComponent(item.content.data)}</Text>
-            </View>
+            </TouchableOpacity>
             <View style={styles.itemRemoveView}>
               <Button
                 title={ UX.captureListEditable ? 'X': '' }

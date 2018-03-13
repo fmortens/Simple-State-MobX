@@ -1,45 +1,18 @@
 import { observable, action, computed, toJS } from 'mobx';
 import { QRCapture } from '../models';
+import UUIDGenerator from 'react-native-uuid-generator';
 
 class QRStore {
-  @observable captures = [
-    {
-      uuid: 1,
-      content: {
-        data: 'item 1'
-      }
-    },
-    {
-      uuid: 2,
-      content: {
-        data: 'item 2'
-      }
-    },
-    {
-      uuid: 3,
-      content: {
-        data: 'item 3'
-      }
-    },
-    {
-      uuid: 4,
-      content: {
-        data: 'item 4'
-      }
-    },
-    {
-      uuid: 5,
-      content: {
-        data: 'item 5'
-      }
-    }
-  ];
+  @observable captures = [];
 
   @action
   capture(data) {
     if (!this.existsInArray(data)) {
       const capture = new QRCapture(data);
-      this.captures.push(capture);
+      UUIDGenerator.getRandomUUID((uuid) => {
+        capture.uuid = uuid;
+        this.captures.push(capture);
+      });
     }
   }
 
