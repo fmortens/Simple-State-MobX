@@ -11,7 +11,8 @@ import { toJS } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import { Observer } from 'mobx-react/native';
 import {
-  ItemListHeaderLeft
+  ItemListHeaderLeft,
+  ItemListHeaderRight
 } from '../components';
 
 @inject('QR', 'UX')
@@ -20,13 +21,7 @@ export default class ItemList extends React.Component {
   static navigationOptions = {
     headerTitle: <Text>woop</Text>,
     headerLeft: <ItemListHeaderLeft />,
-    headerRight: (
-      <Button
-        onPress={() => alert('This is a button!')}
-        title="+"
-        color={buttonColor}
-      />
-    ),
+    headerRight: <ItemListHeaderRight />,
   };
 
   constructor(props) {
