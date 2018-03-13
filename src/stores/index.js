@@ -1,5 +1,7 @@
 import UX from './UX';
+import QR from './QR';
 
-export default {
-  UX
+export {
+  UX,
+  QR
 };
