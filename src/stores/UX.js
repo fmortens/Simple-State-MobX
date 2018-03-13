@@ -21,6 +21,11 @@ class UXStore {
   toggleCaptureListEditable() {
     this.captureListEditable = !this.captureListEditable;
   }
+
+  @computed
+  get editListButtonTitle() {
+    return this.captureListEditable ? 'Done' : 'Edit';
+  }
 }
 
 const UX = new UXStore();

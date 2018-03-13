@@ -44,7 +44,7 @@ export default class TestView extends React.Component {
     console.log('UX.captureListEditable', UX.captureListEditable, title);
 
     return (
-      <View>
+      <View style={styles.headerView}>
         <Button title={title} onPress={() => UX.toggleCaptureListEditable()} />
       </View>
     );
@@ -77,18 +77,23 @@ export default class TestView extends React.Component {
   }
 }
 
+const listBackgroundColor = 'lightgreen';
 const separatorBackgroundColor = '#eee';
+const headerBackgroundColor = 'orange';
+
 const styles = StyleSheet.create({
   listView: {
-    flexDirection: 'column',
-    padding: 0,
-    margin: 0,
+    flex: 1,
     width: '100%',
-    height: '100%'
+    flexDirection: 'column',
+    backgroundColor: listBackgroundColor
   },
   list: {
     flex: 1,
     width: '100%'
+  },
+  headerView: {
+    backgroundColor: headerBackgroundColor
   },
   item: {
     height: 80,

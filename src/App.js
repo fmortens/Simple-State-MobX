@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { Provider } from 'mobx-react';
 import { TabBarBottom, TabNavigator } from 'react-navigation';
 import * as stores from './stores';
+import { RootStack } from './navigators';
 import {
   ItemList,
   Camera
@@ -21,40 +22,41 @@ export default class App extends React.Component {
   render() {
     return (
       <Provider {...stores}>
-        <TabNav />
+        <RootStack />
       </Provider>
     );
   }
 }
 
-const TabNav = TabNavigator({
-  Camera: {
-    screen: Camera,
-    navigationOptions: () => ({
-      tabBarIcon: <Icon name="camera" style={styles.itemListTabBarIcon} />,
-    }),
-  },
-  ItemList: {
-    screen: ItemList,
-    navigationOptions: () => ({
-      tabBarIcon: <Icon name="list-thumbnails" style={styles.itemListTabBarIcon} />,
-    }),
-  }
-},{
-  initialRouteName: 'ItemList',
-  tabBarOptions: {
-    showLabel: false,
-    tabStyle: {
-      width: '100%',
-      backgroundColor: '#eaeaea'
-    },
-  }
-});
+// const TabNav = TabNavigator({
+//   Camera: {
+//     screen: Camera,
+//     navigationOptions: () => ({
+//       title: 'bubb',
+//       tabBarIcon: <Icon name="camera" style={styles.itemListTabBarIcon} />,
+//     }),
+//   },
+//   ItemList: {
+//     screen: ItemList,
+//     navigationOptions: () => ({
+//       tabBarIcon: <Icon name="list-thumbnails" style={styles.itemListTabBarIcon} />,
+//     }),
+//   }
+// },{
+//   initialRouteName: 'ItemList',
+//   tabBarOptions: {
+//     showLabel: false,
+//     tabStyle: {
+//       width: '100%',
+//       backgroundColor: '#eaeaea'
+//     },
+//   }
+// });
 
-const tabBarIconColor = 'black';
-const styles = StyleSheet.create({
-  itemListTabBarIcon: {
-    color: tabBarIconColor,
-    fontSize: 80,
-  }
-});
+// const tabBarIconColor = 'black';
+// const styles = StyleSheet.create({
+//   itemListTabBarIcon: {
+//     color: tabBarIconColor,
+//     fontSize: 80,
+//   }
+// });

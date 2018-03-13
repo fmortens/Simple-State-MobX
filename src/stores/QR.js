@@ -2,11 +2,38 @@ import { observable, action, computed, toJS } from 'mobx';
 import { QRCapture } from '../models';
 
 class QRStore {
-  @observable captures = [{
-    content: {
-      data: 'blubb'
+  @observable captures = [
+    {
+      uuid: 1,
+      content: {
+        data: 'item 1'
+      }
+    },
+    {
+      uuid: 2,
+      content: {
+        data: 'item 2'
+      }
+    },
+    {
+      uuid: 3,
+      content: {
+        data: 'item 3'
+      }
+    },
+    {
+      uuid: 4,
+      content: {
+        data: 'item 4'
+      }
+    },
+    {
+      uuid: 5,
+      content: {
+        data: 'item 5'
+      }
     }
-  }];
+  ];
 
   @action
   capture(data) {
@@ -25,6 +52,12 @@ class QRStore {
     });
 
     return exists;
+  }
+
+  @action
+  remove(item) {
+    this.captures = this.captures
+      .filter(capture => (capture.uuid !== item.uuid));
   }
 }
 
