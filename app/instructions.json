@@ -1,0 +1,32 @@
+{
+  "instructions": [
+    {
+      "title": "Create React Native Project",
+      "description": "create-react-native-app Simple-State-MobX"
+    },
+    {
+      "title": "Install Dependencies",
+      "description": "In your project root, run yarn add mobx mobx-react"
+    },
+    {
+      "title": "Create Folder Structure",
+      "description": "In your project root create an 'app' folder. In the app folder create a 'components' folder."
+    },
+    {
+      "title": "Create your component",
+      "description": "In your components folder create a js file 'home.js'"
+    },
+    {
+      "title": "Create Store",
+      "description": "In the app folder, create a js file 'store.js'"
+    },
+    {
+      "title": "Link it all together",
+      "description": "Mobx needs to inject a store holding the store into the app. To do so, it requires a ‘Provider’ wrapping the whole app."
+    },
+    {
+      "title": "Update your main files",
+      "description": "Update App.js"
+    }
+  ]
+}
