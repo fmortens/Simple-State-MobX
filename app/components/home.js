@@ -26,7 +26,7 @@ export default class Home extends React.Component {
     );
   }
 
-  render () {
+  render() {
     if (this.props.store.loading) {
       return (
         <SafeAreaView style={styles.activityIndicatorContainer}>
@@ -35,7 +35,7 @@ export default class Home extends React.Component {
       );
     } else if (this.props.store.data) {
       return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: '#F5F5F5', paddingTop: 20 }}>
+        <SafeAreaView style={styles.instructionsView}>
           <FlatList
             ref="listRef"
             data={this.props.store.data}
@@ -46,7 +46,7 @@ export default class Home extends React.Component {
       );
     } else {
       return (
-        <SafeAreaView style={{flex: 1, backgroundColor: 'white', alignContent: 'center', justifyContent: 'center'}}>
+        <SafeAreaView style={styles.loadView}>
           <Button title="Load data" onPress={this.props.store.getData} />
         </SafeAreaView>
       );
@@ -54,17 +54,34 @@ export default class Home extends React.Component {
   }
 }
 
+const colors = {
+  white: '#fff',
+  black: '#000',
+  gray: '#ccc',
+  grayish: '#F5F5F5'
+};
+
 const styles = StyleSheet.create({
+  loadView: {
+    flex: 1,
+    backgroundColor: colors.white,
+    alignContent: 'center',
+    justifyContent: 'center'
+  },
   activityIndicatorContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1
   },
-
+  instructionsView: {
+    flex: 1,
+    backgroundColor: colors.grayish,
+    paddingTop: 20
+  },
   row: {
     borderBottomWidth: 1,
-    borderColor: '#ccc',
+    borderColor: colors.gray,
     padding: 10
   },
 
