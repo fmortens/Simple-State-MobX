@@ -95,6 +95,26 @@ export default class App extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.container}>
+        <FlatList
+          data={todoStore.todos}
+          ItemSeparatorComponent={() => <View style={styles.todoListSeparator}></View>}
+          renderItem={({item}) => (
+            <View style={styles.todoListItem}>
+              <Text style={styles.todoListItemHeader}>{item.header}</Text>
+              <Text style={styles.todoListItemBody}>{item.body}</Text>
+            </View>
+          )}
+          style={styles.todoList}
+          initialNumToRender={10}
+          keyExtractor={(todo) => {
+            return todo.created;
+          }}
+          getItemLayout={(data, index) => ({
+            length: 80,
+            offset: 80 * index,
+            index
+          })}
+        />
         <View style={styles.inputView}>
           <TextInput
             style={styles.textInput}
@@ -114,27 +134,6 @@ export default class App extends React.Component {
             }}
             value={this.state.body}
           />
-        </View>
-        <FlatList
-          data={todoStore.todos}
-          ItemSeparatorComponent={() => <View style={styles.todoListSeparator}></View>}
-          renderItem={({item}) => (
-            <View style={styles.todoListItem}>
-              <Text style={styles.todoListItemHeader}>{item.header}</Text>
-            </View>
-          )}
-          style={styles.todoList}
-          initialNumToRender={10}
-          keyExtractor={(todo) => {
-            return todo.created;
-          }}
-          getItemLayout={(data, index) => ({
-            length: 80,
-            offset: 80 * index,
-            index
-          })}
-        />
-        <View style={styles.infoView}>
           <Button
             title="Save todo"
             onPress={this.saveTodo} />
@@ -159,30 +158,30 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: colors.white,
   },
-  inputView: {
-    borderWidth: 1,
-    height: 80
-  },
-  textInput: {
-    height: 40,
-    width: '100%',
-    borderColor: colors.gray,
-    borderWidth: 1
-  },
   todoList: {
-    borderWidth: 1,
     flexDirection: 'column'
   },
   todoListItem: {
     height: 80,
-    width: '100%'
+    width: '100%',
+    padding: 5
   },
   todoListItemHeader: {
-    borderWidth: 1,
     height: '100%'
   },
   todoListSeparator: {
     height: 1,
     backgroundColor: colors.gray
-  }
+  },
+  inputView: {
+    borderTopWidth: 1,
+    alignItems: 'center'
+  },
+  textInput: {
+    height: 40,
+    width: '100%',
+    padding: 10,
+    borderColor: colors.gray,
+    borderBottomWidth: 1
+  },
 });
